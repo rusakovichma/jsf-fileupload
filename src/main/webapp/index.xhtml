@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:my="http://www.creepid.by/fileUpload">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Title example</title>
+    </head>
+
+    <body>
+        <h:form id="upload" enctype="multipart/form-data">
+            <h:panelGroup rendered="#{demo.isNotUpload}">
+                <h:panelGrid columns="2">
+                    <h:outputText value="First Name" />
+                    <h:inputText value="#{demo.firstName}" />
+                    <h:outputText value="First Name" />
+                    <h:inputText value="#{demo.lastName}" />
+                    <h:outputText value="Upload File" />
+                    <h:panelGroup>
+                        <my:fileUpload id="myfile1" target="/files" value="#{demo.file1}">
+                            <f:validator validatorId="fileValidator" />
+                        </my:fileUpload>
+                        <h:message for="myfile1" />
+                    </h:panelGroup>
+                    <h:outputText value="Upload File" />
+                    <my:fileUpload id="myfile2" target="/files" value="#{demo.file2}" />
+                    <h:outputText value="" />
+                    <h:commandButton value="Upload" action="#{demo.doUpload}" />
+                </h:panelGrid>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{demo.isUploaded}">
+                <h:outputText value="First Name is : #{demo.firstName}" />
+                <br />
+                <h:outputText value="Last Name is : #{demo.lastName}" />
+                <br />
+                <hr />
+                <h:outputText value="File Name : #{demo.file1.fileName}" />
+                <br />
+                <h:outputText value="Short File Name : #{demo.file1.shortFileName}" />
+                <br />
+                <h:outputText value="Long File Name : #{demo.file1.longFileName}" />
+                <br />
+                <h:outputText value="ContentType : #{demo.file1.contentType}" />
+                <br />
+                <h:outputText value="Size : #{demo.file1.fileSize}" />
+                <hr />
+
+                <h:graphicImage value="#{demo.file1.shortFileName}" alt="My Image1" />
+                <hr />
+
+                <h:outputText value="File Name : #{demo.file2.fileName}" />
+                <br />
+                <h:outputText value="Short File Name : #{demo.file2.shortFileName}" />
+                <br />
+                <h:outputText value="Long File Name : #{demo.file2.longFileName}" />
+                <br />
+                <h:outputText value="ContentType : #{demo.file2.contentType}" />
+                <br />
+                <h:outputText value="Size : #{demo.file2.fileSize}" />
+                <hr />
+
+                <h:graphicImage value="#{demo.file2.shortFileName}" alt="My Image2" />
+
+            </h:panelGroup>
+        </h:form>
+    </body>
+</html>
